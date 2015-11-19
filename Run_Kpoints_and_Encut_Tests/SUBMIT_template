@@ -1,0 +1,15 @@
+#!/bin/bash
+#SBATCH -J {job_name}           # job name
+#SBATCH -o dan_test_copper.o%j       # output and error file name (%j expands to jobID)
+#SBATCH -n 16              # total number of mpi tasks requested
+#SBATCH -p development     # queue (partition) -- normal, development, etc.
+#SBATCH -t 01:30:00        # run time (hh:mm:ss) - 1.5 hours
+#SBATCH --mail-user=danielmdavies@gmail.com
+# #SBATCH --mail-type=begin  # email me when the job starts
+#SBATCH --mail-type=end    # email me when the job finishes
+
+module load vasp		   # Load the VASP module
+
+			   			   # SLURM jobs will run.
+
+ibrun vasp_std > vasp.out              # run the MPI executable named a.out
