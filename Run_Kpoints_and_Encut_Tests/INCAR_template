@@ -1,0 +1,62 @@
+#Written by Prof. Kesong Yang @ UCSD [June 2014], kesong@ucsd.edu 
+#WARNING! This is a typical setting for static calculations! You need modify some parameters according to your job type!
+#Tom’s One
+
+SYSTEM=LiMn2O4
+#GGA=PE
+
+#Startparameter for this run:
+PREC = medium
+#ISTART = 0           #job: 0-new  1-cont  2-samecut
+#ICHARG = 2           #charge: 1-file 2-atom 10-const, change it to 11 if doing BANDS calculations, 2 for magnetic moments
+
+#Spin-polarized calculation setting:
+ISPIN = 2            #spin polarized calculation? 2-year, 1-no
+MAGMOM = 8*0 16*4 32*0      #default is No. of atoms * 1. Li was none, 16 Mn atoms with potential for 4 electrons to contribute to magnetism, O has none
+
+#Spin-orbit coupling setting:
+#LNONCOLLINEAR = F    #non collinear calculations
+#LSORBIT = F          #spin-orbit coupling
+
+#Electronic Relaxation 1:
+ENCUT = {ENCUT_value}          #cutoff energy
+#EDIFF = 1E-5         #stopping-criterion for ELM
+ALGO = Fast 
+LREAL = Auto 
+
+#Ionic Relaxation: 
+#EDIFFG = -0.025      #stoppint-criterion for IOM
+NSW=100                #number of steps for IOM, 0 means static
+IBRION = 2          #ionic relax: 0-MD 1-quasi-New 2-CG, -1 means static
+ISIF = 3             #2 relaxes ions, 3 relaxes ions and volume
+ISYM = 2             #0-nonsym 1-usesym 2-fastsym
+
+#DOS related values: 
+#EMIN = -25 
+#EMAX = 25 
+#NEDOS = 5000 
+ISMEAR = 1          #check vasp manual
+SIGMA = 0.2
+#LORBIT = 10          #produce s,p,d for each atom; change it to 11 if you want to px,py,pz.....
+NPAR=4              #number of parallel calculations
+
+#Writing flags:
+LWAVE = F            #write WAVECAR, F means not writing
+LCHARG = F           #write CHGCAR
+#LVTOT = F            #write LOCPOT, local potential, useful in surface calculation
+#LELF = T             #write electronic localized function (ELF) 
+
+#LDA/GGA+U  settings (optional) Change the parameters by yourself:
+#LDAU = F            #default is false
+#LDAUTYPE = 2         #check vasp manual, in mode 2, only 'U-J' is meaningful
+#LDAUL = 0 0 0 2      #s 0; p 1, d 2
+#LDAUU = 0 0 0 2      #U
+#LDAUJ = 0 0 0 2      #J
+
+#Hybrid functional calculations
+#PRECFOCK= F          #Fast 
+#LHFCALC = F          #default is False
+#HFSCREEN = 0.2       
+#AEXX = 0.25          #0.25 means HSE06 
+#ALGO = Damped        
+
